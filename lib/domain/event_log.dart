@@ -16,16 +16,12 @@ class EventLog extends Log {
     required this.name,
   }) : super(type: "event");
 
-  EventLog.fromMap(super.map)
-      : name = map['name'],
-        super.fromMap();
+  EventLog.fromMap(super.map) : name = map['name'], super.fromMap();
 
   @override
   Map<String, dynamic> toMap() {
     var map = super.toMap();
-    map.addAll({
-      'name': name,
-    });
+    map.addAll({'name': name});
     return map;
   }
 

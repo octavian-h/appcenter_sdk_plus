@@ -2,6 +2,8 @@
 
 [![pub package](https://img.shields.io/pub/v/appcenter_sdk_plus.svg)](https://pub.dev/packages/appcenter_sdk_plus)
 
+⚠️ Note: Microsoft is retiring App Center, more details on this [link](https://learn.microsoft.com/appcenter/retirement).
+
 An AppCenter SDK written purely in Flutter to support multiple platforms. It provides a subset of
 operations for AppCenter Analytics and AppCenter Crashes. More details about the AppCenter APIs can
 be found on their [site](https://learn.microsoft.com/appcenter).

@@ -29,11 +29,11 @@ class ManagedErrorLog extends Log {
   }) : super(type: "managedError");
 
   ManagedErrorLog.fromMap(super.map)
-      : processId = map['processId'],
-        processName = map['processName'],
-        fatal = map['fatal'],
-        exception = ExceptionLog.fromMap(map['exception']),
-        super.fromMap();
+    : processId = map['processId'],
+      processName = map['processName'],
+      fatal = map['fatal'],
+      exception = ExceptionLog.fromMap(map['exception']),
+      super.fromMap();
 
   @override
   Map<String, dynamic> toMap() {
@@ -79,9 +79,9 @@ class ExceptionLog {
   }
 
   ExceptionLog.fromMap(Map<String, dynamic> map)
-      : type = map['type'],
-        message = map['message'],
-        stackTrace = map['stackTrace'];
+    : type = map['type'],
+      message = map['message'],
+      stackTrace = map['stackTrace'];
 
   @override
   String toString() {

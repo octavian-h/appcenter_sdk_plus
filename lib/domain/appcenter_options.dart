@@ -21,12 +21,12 @@ class AppCenterOptions {
   });
 
   AppCenterOptions.fromMap(Map<String, dynamic> map)
-      : sendLogsTimeout = map['sendLogsTimeout'],
-        logsBatchSize = map['logsBatchSize'],
-        minDelayBetweenRequests = map['minDelayBetweenRequests'],
-        logsDbPath = map['logsDbPath'],
-        installId = map['installId'],
-        device = Device.fromMap(map['device']);
+    : sendLogsTimeout = map['sendLogsTimeout'],
+      logsBatchSize = map['logsBatchSize'],
+      minDelayBetweenRequests = map['minDelayBetweenRequests'],
+      logsDbPath = map['logsDbPath'],
+      installId = map['installId'],
+      device = Device.fromMap(map['device']);
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{

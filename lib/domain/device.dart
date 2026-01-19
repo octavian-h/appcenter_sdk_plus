@@ -70,17 +70,17 @@ class Device {
   }
 
   Device.fromMap(Map<String, dynamic> map)
-      : sdkName = map['sdkName'],
-        sdkVersion = map['sdkVersion'],
-        model = map['model'],
-        oemName = map['oemName'],
-        osName = map['osName'],
-        osVersion = map['osVersion'],
-        locale = map['locale'],
-        screenSize = map['screenSize'],
-        appVersion = map['appVersion'],
-        appBuild = map['appBuild'],
-        appNamespace = map['appNamespace'];
+    : sdkName = map['sdkName'],
+      sdkVersion = map['sdkVersion'],
+      model = map['model'],
+      oemName = map['oemName'],
+      osName = map['osName'],
+      osVersion = map['osVersion'],
+      locale = map['locale'],
+      screenSize = map['screenSize'],
+      appVersion = map['appVersion'],
+      appBuild = map['appBuild'],
+      appNamespace = map['appNamespace'];
 
   @override
   String toString() {

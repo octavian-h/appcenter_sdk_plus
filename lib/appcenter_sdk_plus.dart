@@ -1,4 +1,4 @@
-library appcenter_sdk_plus;
+library;
 
 import 'package:logging/logging.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -31,8 +31,10 @@ class AppCenter {
 
   /// Configure the SDK with an app secret parameter.
   /// This may be called only once per application process lifetime.
-  static Future<AppCenter> start(String appSecret,
-      {AppCenterOptions options = const AppCenterOptions()}) async {
+  static Future<AppCenter> start(
+    String appSecret, {
+    AppCenterOptions options = const AppCenterOptions(),
+  }) async {
     _log.fine("Init AppCenter with options=$options");
     var logRepository = await LogRepository.create(options.logsDbPath);
     var installId = options.installId ?? await _readInstallIdFromSettings();

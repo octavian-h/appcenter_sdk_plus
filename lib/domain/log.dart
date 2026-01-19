@@ -28,24 +28,24 @@ abstract class Log {
   final Map<String, String> properties;
 
   Log({
-    id,
+    String? id,
     required this.type,
-    timestamp,
+    String? timestamp,
     required this.appLaunchTimestamp,
     required this.sid,
     required this.device,
     required this.properties,
-  })  : id = id ?? const Uuid().v1(),
-        timestamp = timestamp ?? DateTime.now().toIso8601String();
+  }) : id = id ?? const Uuid().v1(),
+       timestamp = timestamp ?? DateTime.now().toIso8601String();
 
   Log.fromMap(Map<String, dynamic> map)
-      : id = map['id'],
-        type = map['type'],
-        timestamp = map['timestamp'],
-        appLaunchTimestamp = map['appLaunchTimestamp'],
-        sid = map['sid'],
-        device = Device.fromMap(map['device']),
-        properties = _convertToStringMap(map['properties']);
+    : id = map['id'],
+      type = map['type'],
+      timestamp = map['timestamp'],
+      appLaunchTimestamp = map['appLaunchTimestamp'],
+      sid = map['sid'],
+      device = Device.fromMap(map['device']),
+      properties = _convertToStringMap(map['properties']);
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
@@ -60,7 +60,8 @@ abstract class Log {
   }
 
   static Map<String, String> _convertToStringMap(
-      Map<String, dynamic> dynamicMap) {
+    Map<String, dynamic> dynamicMap,
+  ) {
     return dynamicMap.map((key, value) => MapEntry(key, value.toString()));
   }
 

@@ -76,8 +76,10 @@ class AppCenterAnalyticsObserver extends RouteObserver<ModalRoute<dynamic>> {
     final String? screenName = nameExtractor(route.settings);
     if (screenName != null) {
       try {
-        AppCenterAnalytics.trackEvent("screen_view",
-            properties: {"screenName": _truncate(screenName, 256)});
+        AppCenterAnalytics.trackEvent(
+          "screen_view",
+          properties: {"screenName": _truncate(screenName, 256)},
+        );
       } catch (e, s) {
         _log.severe("Cannot send screen view event", e, s);
       }

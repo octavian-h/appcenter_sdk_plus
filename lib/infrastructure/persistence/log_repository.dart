@@ -41,11 +41,13 @@ class LogRepository {
       return db;
     }
     await db.execute("DROP TABLE IF EXISTS $_tableName");
-    await db.execute("CREATE TABLE $_tableName("
-        "id TEXT PRIMARY KEY,"
-        "type TEXT NOT NULL,"
-        "timestamp TEXT NOT NULL,"
-        "value TEXT NOT NULL)");
+    await db.execute(
+      "CREATE TABLE $_tableName("
+      "id TEXT PRIMARY KEY,"
+      "type TEXT NOT NULL,"
+      "timestamp TEXT NOT NULL,"
+      "value TEXT NOT NULL)",
+    );
     await db.setUserVersion(_logsDbVersion);
     return db;
   }
@@ -61,26 +63,26 @@ class LogRepository {
   Future<void> save(Log logItem) async {
     _log.fine("Saving log item: $logItem");
     return await db.execute(
-        "INSERT INTO $_tableName (id,type,timestamp,value) "
-        "VALUES (?,?,?,?)",
-        [
-          logItem.id,
-          logItem.type,
-          logItem.timestamp,
-          jsonEncode(logItem.toMap()),
-        ]);
+      "INSERT INTO $_tableName (id,type,timestamp,value) "
+      "VALUES (?,?,?,?)",
+      [
+        logItem.id,
+        logItem.type,
+        logItem.timestamp,
+        jsonEncode(logItem.toMap()),
+      ],
+    );
   }
 
   Future<List<Log>> findAll(int offset, int limit) async {
     _log.fine("Find logs sorted by timestamp, offset=$offset, limit=$limit");
     return (await db.select(
-            "SELECT * "
-            "FROM $_tableName "
-            "ORDER BY timestamp DESC "
-            "LIMIT ? OFFSET ?",
-            [limit, offset]))
-        .map((item) => _convertToLog(item))
-        .toList();
+      "SELECT * "
+      "FROM $_tableName "
+      "ORDER BY timestamp DESC "
+      "LIMIT ? OFFSET ?",
+      [limit, offset],
+    )).map((item) => _convertToLog(item)).toList();
   }
 
   Future<void> deleteByIds(List<String> logItemIds) async {
@@ -89,13 +91,17 @@ class LogRepository {
       return;
     }
     var whereClause = logItemIds.map((id) => "id='$id'").join(" OR ");
-    return await db.execute("DELETE FROM $_tableName "
-        "WHERE $whereClause");
+    return await db.execute(
+      "DELETE FROM $_tableName "
+      "WHERE $whereClause",
+    );
   }
 
   Future<int> count() async {
     _log.fine("Count logs");
-    return (await db.select("SELECT count(id) AS c FROM $_tableName"))
-        .first["c"] as int;
+    return (await db.select(
+          "SELECT count(id) AS c FROM $_tableName",
+        )).first["c"]
+        as int;
   }
 }

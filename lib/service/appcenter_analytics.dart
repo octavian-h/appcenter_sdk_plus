@@ -5,7 +5,7 @@ import '../domain/event_log.dart';
 class AppCenterAnalytics {
   static const List<String> _reservedPropertyNames = [
     "baseData",
-    "baseDataType"
+    "baseDataType",
   ];
   static const String _pluginName = "analytics";
 
@@ -15,16 +15,21 @@ class AppCenterAnalytics {
   /// The number of properties per event is limited to 20.
   /// The property names or values cannot be null.
   /// The baseData and baseDataType properties are reserved.
-  static Future<void> trackEvent(String eventName,
-      {Map<String, String> properties = const {}}) async {
+  static Future<void> trackEvent(
+    String eventName, {
+    Map<String, String> properties = const {},
+  }) async {
     _validateArgs(eventName, properties);
 
-    return await AppCenter.instance.logService.addLog(EventLog(
+    return await AppCenter.instance.logService.addLog(
+      EventLog(
         appLaunchTimestamp: AppCenter.instance.appLaunchTimestamp,
         sid: AppCenter.instance.sessionId,
         device: AppCenter.instance.deviceService.device,
         properties: properties,
-        name: eventName));
+        name: eventName,
+      ),
+    );
   }
 
   static void _validateArgs(String eventName, Map<String, String> properties) {

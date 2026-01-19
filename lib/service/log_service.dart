@@ -24,8 +24,11 @@ class LogService {
     this._minDelayBetweenRequests,
   );
 
-  static Future<LogService> create(LogRepository logRepository,
-      AppCenterClient client, AppCenterOptions options) async {
+  static Future<LogService> create(
+    LogRepository logRepository,
+    AppCenterClient client,
+    AppCenterOptions options,
+  ) async {
     var logService = LogService._internal(
       logRepository,
       client,
@@ -68,8 +71,9 @@ class LogService {
       } on HttpException catch (e) {
         if (e.statusCode < 500 && e.statusCode != 408 && e.statusCode != 429) {
           _log.warning(
-              "Logs will not be re-send because of invalid api key or invalid data",
-              e);
+            "Logs will not be re-send because of invalid api key or invalid data",
+            e,
+          );
           await _clearSentLogs(logs);
         } else {
           _log.warning("Logs will be re-send", e);

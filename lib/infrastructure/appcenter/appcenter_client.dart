@@ -34,7 +34,10 @@ class AppCenterClient {
     } catch (e, s) {
       _log.severe("Failed to send logs to AppCenter", e, s);
       throw HttpException(
-          statusCode: 500, message: e.toString(), stackTrace: s);
+        statusCode: 500,
+        message: e.toString(),
+        stackTrace: s,
+      );
     }
 
     var statusCode = response.statusCode;
@@ -44,7 +47,9 @@ class AppCenterClient {
       return SendLogsResponse.fromMap(json.decode(responseBody));
     }
     _log.severe(
-        "Failed to send logs to AppCenter. code=$statusCode", responseBody);
+      "Failed to send logs to AppCenter. code=$statusCode",
+      responseBody,
+    );
     throw HttpException(statusCode: statusCode, message: responseBody);
   }
 

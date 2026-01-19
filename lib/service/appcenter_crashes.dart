@@ -26,16 +26,18 @@ class AppCenterCrashes {
       stackTrace: stack.toString(),
     );
 
-    return await AppCenter.instance.logService.addLog(ManagedErrorLog(
-      appLaunchTimestamp: AppCenter.instance.appLaunchTimestamp,
-      sid: AppCenter.instance.sessionId,
-      device: AppCenter.instance.deviceService.device,
-      properties: properties,
-      processId: pid,
-      processName: pid.toString(),
-      fatal: fatal,
-      exception: convertedException,
-    ));
+    return await AppCenter.instance.logService.addLog(
+      ManagedErrorLog(
+        appLaunchTimestamp: AppCenter.instance.appLaunchTimestamp,
+        sid: AppCenter.instance.sessionId,
+        device: AppCenter.instance.deviceService.device,
+        properties: properties,
+        processId: pid,
+        processName: pid.toString(),
+        fatal: fatal,
+        exception: convertedException,
+      ),
+    );
   }
 
   static void _validateArgs(Map<String, String> properties) {

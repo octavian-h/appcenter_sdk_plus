@@ -24,11 +24,12 @@ class SendLogsResponse {
   }
 
   SendLogsResponse.fromMap(Map<String, dynamic> map)
-      : status = map['status'] ?? "unknown",
-        validDiagnosticsIds = _convertToStringList(map['validDiagnosticsIds']),
-        throttledDiagnosticsIds =
-            _convertToStringList(map['throttledDiagnosticsIds']),
-        correlationId = map['correlationId'] ?? "";
+    : status = map['status'] ?? "unknown",
+      validDiagnosticsIds = _convertToStringList(map['validDiagnosticsIds']),
+      throttledDiagnosticsIds = _convertToStringList(
+        map['throttledDiagnosticsIds'],
+      ),
+      correlationId = map['correlationId'] ?? "";
 
   static List<String> _convertToStringList(List<dynamic>? dynamicList) {
     if (dynamicList == null) {
