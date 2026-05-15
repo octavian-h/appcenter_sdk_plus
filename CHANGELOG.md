@@ -1,3 +1,8 @@
+## 1.0.7
+
+* Update dependencies
+* Remove sqlite3_flutter_libs
+
 ## 1.0.6
 
 * Update dependencies

@@ -24,14 +24,6 @@ To install this package run:
 flutter pub add appcenter_sdk_plus
 ```
 
-For Flutter applications you need to add the native SQLite library with:
-
-```bash
-flutter pub add sqlite3_flutter_libs
-```
-
-For other platforms, read [sqlite3 docs](https://pub.dev/packages/sqlite3#supported-platforms)
-
 ## Usage
 
 ```dart
@@ -53,6 +45,9 @@ void main() async {
   }
 }
 ```
+
+See a full project that is using sqlite3-async in
+the [example](https://github.com/octavian-h/appcenter_sdk_plus/tree/master/example) folder.
 
 ## Additional information
 
