@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:logging/logging.dart';
 
 import '../domain/appcenter_options.dart';
@@ -24,19 +26,25 @@ class LogService {
     this._minDelayBetweenRequests,
   );
 
-  static Future<LogService> create(
+  static LogService create(
     LogRepository logRepository,
     AppCenterClient client,
     AppCenterOptions options,
-  ) async {
-    var logService = LogService._internal(
+  ) {
+    return LogService._internal(
       logRepository,
       client,
       options.logsBatchSize,
       options.minDelayBetweenRequests,
     );
-    await logService._sendCachedLogs();
-    return logService;
+  }
+
+  void sendCachedLogsInBackground() {
+    unawaited(
+      _sendCachedLogs().catchError((Object error, StackTrace stackTrace) {
+        _log.severe("Failed to send cached logs", error, stackTrace);
+      }),
+    );
   }
 
   Future<void> addLog(Log logItem) async {

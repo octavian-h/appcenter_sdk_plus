@@ -13,7 +13,7 @@ import '../../domain/managed_error_log.dart';
 @immutable
 class LogRepository {
   static final Logger _log = Logger((LogRepository).toString());
-  static const int _logsDbVersion = 1;
+  static const int _logsDbVersion = 2;
   static const String _tableName = "logs";
   final AsyncDatabase db;
 
@@ -40,6 +40,7 @@ class LogRepository {
     if (dbVersion == _logsDbVersion) {
       return db;
     }
+
     await db.execute("DROP TABLE IF EXISTS $_tableName");
     await db.execute(
       "CREATE TABLE $_tableName("
@@ -47,6 +48,10 @@ class LogRepository {
       "type TEXT NOT NULL,"
       "timestamp TEXT NOT NULL,"
       "value TEXT NOT NULL)",
+    );
+    await db.execute(
+      "CREATE INDEX IF NOT EXISTS logs_timestamp_idx "
+      "ON $_tableName(timestamp DESC)",
     );
     await db.setUserVersion(_logsDbVersion);
     return db;

@@ -39,7 +39,7 @@ class AppCenter {
     var logRepository = await LogRepository.create(options.logsDbPath);
     var installId = options.installId ?? await _readInstallIdFromSettings();
     var client = AppCenterClient(appSecret, installId, options.sendLogsTimeout);
-    var logService = await LogService.create(logRepository, client, options);
+    var logService = LogService.create(logRepository, client, options);
     var appLaunchTimestamp = DateTime.now().toIso8601String();
     var sessionId = const Uuid().v1();
     var deviceService = options.device != null
@@ -52,6 +52,7 @@ class AppCenter {
       logService,
       deviceService,
     );
+    logService.sendCachedLogsInBackground();
     return _instance!;
   }
 

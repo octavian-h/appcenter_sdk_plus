@@ -1,3 +1,8 @@
+## 1.0.8
+
+* Update dependencies
+* Send cached logs in background 
+
 ## 1.0.7
 
 * Update dependencies
