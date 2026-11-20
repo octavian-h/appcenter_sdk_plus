@@ -2,7 +2,7 @@ import 'package:appcenter_sdk_plus/appcenter_sdk_plus.dart';
 import 'package:appcenter_sdk_plus/service/appcenter_analytics.dart';
 import 'package:appcenter_sdk_plus/service/appcenter_analytics_observer.dart';
 import 'package:appcenter_sdk_plus/service/appcenter_crashes.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:logging/logging.dart';
 import 'package:logging_appenders/logging_appenders.dart';

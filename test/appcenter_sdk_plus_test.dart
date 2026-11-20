@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:appcenter_sdk_plus/appcenter_sdk_plus.dart';
 import 'package:appcenter_sdk_plus/domain/appcenter_options.dart';
 import 'package:appcenter_sdk_plus/domain/device.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
